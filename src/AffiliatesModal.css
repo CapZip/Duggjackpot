@@ -1,0 +1,147 @@
+.modal-content {
+  position: relative;
+  width: 80%;
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+  padding-top: 5px;
+  background: white;
+  border: 3px solid black;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+@font-face {
+  font-family: "Pocket Monk";
+  src: url("./fonts/Pocket Monk.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.username-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.username-input {
+  width: 100%;
+  padding: 8px;
+  border: 2px solid black;
+  border-radius: 5px;
+  padding-right: 30px; /* Make space for the button */
+}
+
+.referral-link {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.referral-input {
+  width: 100%;
+  padding: 8px;
+  border: 2px solid black;
+  border-radius: 5px;
+  padding-right: 30px; /* Make space for the button */
+}
+.edit-button {
+  position: absolute;
+  font-family: "Pocket Monk", sans-serif;
+  letter-spacing: 1px;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  padding: 8px 12px;
+  border: none;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background: #7f3fd4;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+  border-right: 2px solid black;
+  color: white;
+  cursor: pointer;
+}
+.edit-button.finish {
+  background: #26a137;
+}
+.copy-button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  font-family: "Pocket Monk", sans-serif;
+  letter-spacing: 1px;
+  padding: 8px 12px;
+  border: none;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background: #26a137;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+  border-right: 2px solid black;
+  color: white;
+  cursor: pointer;
+}
+
+.copy-button:hover {
+  background: #1b7227;
+}
+
+.referral-list {
+  list-style: none;
+  padding: 0;
+}
+
+.referral-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+}
+.referbut {
+  padding: 12px 20px;
+  background: #28a745;
+  color: white;
+  font-size: 2rem;
+  border-radius: 5px;
+  border: 2px solid black;
+  cursor: pointer;
+  font-family: "Pocket Monk", sans-serif;
+  letter-spacing: 1px;
+  letter-spacing: 2px;
+  width: 100%;
+}
+
+.claim-button {
+  padding: 6px 10px;
+  background: #28a745;
+  font-family: "Pocket Monk", sans-serif;
+  letter-spacing: 1px;
+  border-radius: 5px;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.claim-button:hover {
+  background: #218838;
+}
+
+.close-buttons {
+  position: absolute;
+  font-family: "Pocket Monk", sans-serif;
+  letter-spacing: 1px;
+  top: 0px;
+  right: 20px;
+  background: #f44336;
+  color: white;
+  padding: 5px 15px;
+  font-size: 14px !important;
+  border: 2px solid black;
+  margin-top: 20px;
+  cursor: pointer;
+}

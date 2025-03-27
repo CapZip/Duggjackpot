@@ -1,0 +1,590 @@
+/* App.css */
+.App {
+  text-align: center;
+}
+@font-face {
+  font-family: "Pocket Monk";
+  src: url("./fonts/Pocket Monk.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Timer";
+  src: url("./fonts/timer.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+body {
+  margin: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  padding: 0;
+  font-family: "Pocket Monk", sans-serif;
+  background-color: #7f3fd4; /* Fallback background color */
+  background-image: url("./svg/weel/background.svg"); /* Update the path to your SVG */
+  background-size: cover; /* Ensure the image covers the entire background area */
+  background-position: center center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+}
+.VolumeBut {
+  width: 50px;
+}
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  letter-spacing: 1px;
+}
+
+.modal {
+  background: white;
+  padding: 20px;
+  width: 80%;
+  border: 3px solid black;
+  max-width: 500px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  outline: none;
+}
+
+.how-it-works-content h3,
+.how-it-works-content h4 {
+  margin-top: 10px;
+  margin-bottom: 0px;
+}
+
+.how-it-works-content p,
+.how-it-works-content ul {
+  margin-top: 10px;
+  line-height: 1;
+  font-family:
+    DM Sans,
+    Roboto,
+    Helvetica Neue,
+    Helvetica,
+    Arial,
+    sans-serif;
+}
+
+.how-it-works-content ul {
+  padding-left: 20px;
+}
+
+.how-it-works-content ul li {
+  margin-bottom: 10px;
+}
+
+.close-button {
+  background: #f44336;
+  display: block !important;
+  color: white;
+  letter-spacing: 2px;
+  border: none;
+  padding: 10px 20px;
+  border: 2px solid black;
+  cursor: pointer;
+  margin-top: 20px;
+}
+.right-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.wallet-adapter-button-trigger {
+  background-color: white !important;
+}
+.wallet-adapter-button-trigger {
+  font-family: "Pocket Monk", sans-serif !important;
+  color: black !important;
+  font-size: 1.5rem !important;
+  border-radius: 0px !important;
+  border: 3px solid black !important;
+}
+.wallet-adapter-button {
+  color: black !important;
+}
+.wallet-adapter-modal-list-more svg {
+  fill: black !important;
+}
+.wallet-adapter-modal-wrapper {
+  background-color: white !important;
+}
+.wallet-adapter-modal-title {
+  color: black !important;
+}
+.wallet-adapter-modal-list-more {
+  color: black !important;
+}
+.wallet-adapter-modal-button-close {
+  background-color: #ebe9e8 !important;
+}
+.main-content {
+  display: flex;
+  justify-content: center; /* Center the content horizontally */
+  align-items: center;
+  height: calc(100vh - 40px); /* Full height minus the header height */
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  /* Update the path to your SVG */
+  background-size: contain; /* Ensure the image is fully visible */
+}
+
+.left-side,
+.right-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.left-side {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.icon-stage {
+  position: absolute;
+  bottom: -35px; /* Adjust as needed to place the icons on the stage */
+  left: 50%;
+  transform: translateX(-45%) translateY(-5%);
+  display: flex;
+  width: 100%;
+  max-width: 1240px;
+  padding: 20px;
+  z-index: 6;
+}
+
+.stage-icon {
+  width: 100px;
+  height: auto;
+}
+
+.wheel-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 50px;
+  height: 650px;
+}
+
+.right-side {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.timer {
+  position: absolute;
+  bottom: 150px; /* Adjust as needed to place the timer above the man */
+  left: 50%;
+  transform: translateX(25%) translateY(-275%);
+}
+.timer-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  max-width: 235px;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 1.7rem;
+  font-family: "Timer", sans-serif;
+}
+.timer-text.active {
+  font-size: 4rem;
+}
+.timer img {
+  width: 250px; /* Adjust as needed */
+  height: auto;
+}
+@keyframes flash {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.timer-text:not(.active) {
+  animation: flash 1s steps(1, start) infinite;
+}
+.buyentrybutton {
+  background-image: url("./svg/weel/buyentry.svg");
+  background-size: contain;
+  width: 200px;
+  height: 110px;
+  background-position: center;
+  border: none;
+  background-color: transparent !important;
+  font-size: 1.8rem;
+  color: white;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  font-family: "Pocket Monk", sans-serif;
+  align-items: center;
+  line-height: 0.8;
+  justify-content: center;
+  text-align: center;
+  text-shadow: 2px 3px 1px rgba(0, 0, 0, 0.75);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-25%);
+  z-index: 100;
+  bottom: 14%;
+}
+.wheel-container {
+  position: relative;
+  width: 100%;
+  max-width: 600px; /* Adjust the max width as needed */
+  margin: 0 auto;
+  height: 600px; /* Adjust the height as needed */
+}
+.pending-text {
+  font-size: 1.7rem !important;
+  position: absolute;
+  transform: translate(
+    -50%,
+    -50%
+  ); /* Custom font size for Pending Transactions */
+}
+
+.spinning-text {
+  font-size: 2rem !important; /* Custom font size for Spinning */
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+.overlay-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.overlay-image {
+  width: 100%;
+  max-width: 750px; /* Maximum width for larger screens */
+  height: auto;
+  object-fit: cover;
+  z-index: 1;
+  margin: auto; /* Center the image */
+}
+
+.overlay-text {
+  position: absolute;
+  z-index: 2;
+  text-align: center;
+  color: white;
+  font-size: 2rem;
+  padding: 0 10px; /* Add padding for small screens */
+  text-shadow: 2px 3px 1px rgba(0, 0, 0, 0.75);
+  width: 80px;
+}
+
+/* Responsive adjustments */
+.wheel {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-40%, -71%) rotate(-45deg);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.overlay {
+  position: absolute;
+  width: 620px;
+  display: flex;
+  z-index: 200;
+  transform: translate(-0%, -0%) rotate(46deg);
+  pointer-events: none; /* Make sure the overlay does not interfere with wheel interactions */
+}
+.buyentrybutton .buyin {
+  font-size: 3rem;
+}
+
+.buyentrybutton .for {
+  font-size: 1rem;
+  margin-bottom: 1px;
+}
+
+.buyentrybutton .amount {
+  font-size: 3rem;
+}
+.man-svg {
+  position: absolute;
+  bottom: 20px; /* Adjust as needed to place the man on the stage */
+  left: 50%;
+  transform: translateX(10%);
+  z-index: 7;
+}
+.weels-svg {
+  position: absolute;
+  bottom: 250px; /* Adjust as needed to place the man on the stage */
+  left: 53%;
+  transform: translateX(130%);
+  z-index: 7;
+}
+.weels-svg img {
+  width: 225px;
+  height: auto;
+}
+.man-svg img {
+  width: 250px;
+  height: auto;
+}
+.overlay-text {
+  position: absolute;
+  z-index: 2;
+  text-align: center;
+  color: white;
+  font-size: 3rem;
+  padding: 0 10px; /* Add padding for small screens */
+  transform: translate(250%, 150%);
+  line-height: 0.8;
+}
+.total-amount {
+  position: absolute;
+  transform: translate(0%, 15%) rotate(46deg);
+  width: 100%;
+  z-index: 200;
+  font-size: 2.45rem;
+}
+/* Responsive Styles */
+
+@media (max-width: 1125px) {
+  .weels-svg {
+    position: absolute;
+    bottom: 250px; /* Adjust as needed to place the man on the stage */
+    left: 53%;
+    transform: translateX(116%);
+    z-index: 7;
+  }
+  .weels-svg img {
+    width: 215px;
+    height: auto;
+  }
+}
+@media (max-width: 1000px) {
+  .weels-svg {
+    position: absolute;
+    bottom: 250px; /* Adjust as needed to place the man on the stage */
+    left: 53%;
+    transform: translateX(124%);
+    z-index: 7;
+  }
+  .weels-svg img {
+    width: 200px;
+    height: auto;
+  }
+  body {
+    overflow-y: auto;
+  }
+}
+.theme-song-player {
+  position: absolute;
+  z-index: 1000;
+}
+
+.play-button,
+.volume-button {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 5px;
+}
+@media (max-width: 850px) {
+  .background-container {
+    background-image: url("./svg/mobile-weel/back_mob.svg");
+    background-size: cover; /* Ensure the background covers the full height */
+    background-position: bottom center;
+    height: 1080px;
+    overflow-x: hidden;
+    background-attachment: local;
+  }
+  .right-side {
+    transform: translate(0, -100%);
+  }
+  body {
+    background-image: none;
+    overflow-x: hidden;
+    overflow-x: clip !important;
+  }
+  .header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .header .site-name {
+    font-size: 1.5rem;
+  }
+
+  .main-content {
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .wheel-container {
+    margin-bottom: 20px;
+    margin-top: 20px;
+    position: relative; /* Ensure absolute positioning of wheel */
+  }
+
+  .man-svg {
+    width: 100%;
+    max-width: 400px;
+    position: absolute;
+    bottom: -145px; /* Ensure it stays at the bottom */
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .overlay {
+    position: absolute;
+    width: 112vw;
+    max-width: 620px;
+    top: -50;
+    left: -10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .wheel {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: auto;
+    transform: translate(-50%, -10%) rotate(-46deg); /* Center the wheel */
+  }
+  .wheel-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+  .timer {
+    transform: translate(-50%, 0%) !important;
+    width: 100%;
+    bottom: 65%;
+    position: relative;
+  }
+  .timer img {
+    width: 175px;
+  }
+  .timer-text {
+    font-size: 1.05rem;
+    max-width: 175px;
+    transform: translate(-50%, -52%);
+  }
+  .pending-text {
+    font-size: 1.1rem;
+  }
+  .spinning-text {
+    font-size: 1.1rem;
+  }
+  .timer-text.active {
+    font-size: 3.2rem;
+  }
+  .buyentrybutton {
+    position: absolute;
+    width: 175px;
+    height: auto;
+    top: 70%;
+    left: 50%;
+    transform: translate(-90%, 210%);
+  }
+  .buyentrybutton .buyin {
+    font-size: 2.5rem;
+  }
+
+  .buyentrybutton .for {
+    font-size: 1rem;
+    margin-bottom: 1px;
+  }
+
+  .buyentrybutton .amount {
+    font-size: 2.5rem;
+  }
+  .man-svg img {
+    transform: translate(10%, 0%);
+    max-width: 170px;
+  }
+  .man-svg {
+    position: relative;
+    transform: translate(10%, 5%);
+  }
+  .icon-stage {
+    position: relative;
+    left: 0%;
+    bottom: -145px;
+    transform: translate(-10%, 35%);
+  }
+  .stage-icon {
+    width: 65px !important;
+    height: auto !important;
+  }
+  .wallet-adapter-button-trigger {
+    font-size: 1rem !important;
+    padding: 6px !important;
+    margin-right: 10px !important;
+    line-height: 1 !important;
+  }
+  .overlay-image {
+    width: 325px; /* Maximum width for larger screens */
+    height: auto;
+    object-fit: cover;
+    z-index: 1;
+    margin: auto; /* Center the image */
+    position: abosolute;
+  }
+  .overlay-text {
+    transform: translate(90%, -600%);
+    position: aboslute;
+    bottom: 0%;
+    font-size: 2rem;
+  }
+  .total-amount {
+    position: absolute;
+    transform: translate(0%, 15%) rotate(46deg);
+    width: 100%;
+    z-index: 200;
+    font-size: 1.8rem;
+  }
+  .weels-svg {
+    position: absolute;
+    bottom: 550px; /* Adjust as needed to place the man on the stage */
+    left: -14%;
+    transform: translateX(0%);
+    z-index: 7;
+  }
+  .weels-svg img {
+    width: 215px;
+    height: auto;
+  }
+  .wallet-adapter-button-start-icon {
+    display: none !important;
+  }
+}
