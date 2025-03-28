@@ -11,7 +11,7 @@
 }
 @font-face {
   font-family: "Pocket Monk";
-  src: url("./fonts/Pocket Monk.otf") format("opentype");
+  src: url("./fonts/Pocket Monk.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
 }

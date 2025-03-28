@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Pocket Monk";
-  src: url("./fonts/Pocket Monk.otf") format("opentype");
+  src: url("./fonts/Pocket Monk.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
 }
@@ -11,7 +11,7 @@
   justify-content: center; /* Center the header content */
   align-items: center;
   padding: 2px 5px;
-  background-color: #7f3fd4;
+  background-color: #897b71;
   color: white;
   border-bottom: 3px solid black;
   border-top: 3px solid black;

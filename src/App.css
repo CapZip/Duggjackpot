@@ -4,7 +4,7 @@
 }
 @font-face {
   font-family: "Pocket Monk";
-  src: url("./fonts/Pocket Monk.otf") format("opentype");
+  src: url("./fonts/Pocket Monk.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
 }
@@ -21,7 +21,7 @@ body {
   overflow-y: hidden;
   padding: 0;
   font-family: "Pocket Monk", sans-serif;
-  background-color: #7f3fd4; /* Fallback background color */
+  background-color: #897b71; /* Fallback background color */
   background-image: url("./svg/weel/background.svg"); /* Update the path to your SVG */
   background-size: cover; /* Ensure the image covers the entire background area */
   background-position: center center; /* Center the image */
@@ -103,7 +103,7 @@ body {
 .wallet-adapter-button-trigger {
   font-family: "Pocket Monk", sans-serif !important;
   color: black !important;
-  font-size: 1.5rem !important;
+  font-size: 1.4rem !important;
   border-radius: 0px !important;
   border: 3px solid black !important;
 }
@@ -230,7 +230,7 @@ body {
   background-position: center;
   border: none;
   background-color: transparent !important;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   color: white;
   cursor: pointer;
   background-repeat: no-repeat;
@@ -238,7 +238,7 @@ body {
   flex-direction: column;
   font-family: "Pocket Monk", sans-serif;
   align-items: center;
-  line-height: 0.8;
+  line-height: 0.9;
   justify-content: center;
   text-align: center;
   text-shadow: 2px 3px 1px rgba(0, 0, 0, 0.75);
@@ -322,7 +322,7 @@ body {
   pointer-events: none; /* Make sure the overlay does not interfere with wheel interactions */
 }
 .buyentrybutton .buyin {
-  font-size: 3rem;
+  font-size: 2.4rem;
 }
 
 .buyentrybutton .for {
@@ -331,13 +331,13 @@ body {
 }
 
 .buyentrybutton .amount {
-  font-size: 3rem;
+  font-size: 2.4rem;
 }
 .man-svg {
   position: absolute;
   bottom: 20px; /* Adjust as needed to place the man on the stage */
   left: 50%;
-  transform: translateX(10%);
+  transform: translate(-5%, 18%);
   z-index: 7;
 }
 .weels-svg {
@@ -352,7 +352,7 @@ body {
   height: auto;
 }
 .man-svg img {
-  width: 250px;
+  width: 600px;
   height: auto;
 }
 .overlay-text {
@@ -370,7 +370,8 @@ body {
   transform: translate(0%, 15%) rotate(46deg);
   width: 100%;
   z-index: 200;
-  font-size: 2.45rem;
+  font-size: 1.8rem;
+  color: white;
 }
 /* Responsive Styles */
 
@@ -455,7 +456,7 @@ body {
 
   .man-svg {
     width: 100%;
-    max-width: 400px;
+    max-width: 500px;
     position: absolute;
     bottom: -145px; /* Ensure it stays at the bottom */
     left: 50%;
@@ -486,7 +487,7 @@ body {
     position: relative;
   }
   .timer {
-    transform: translate(-50%, 0%) !important;
+    transform: translate(-50%, -160%) !important;
     width: 100%;
     bottom: 65%;
     position: relative;
@@ -517,7 +518,7 @@ body {
     transform: translate(-90%, 210%);
   }
   .buyentrybutton .buyin {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
   }
 
   .buyentrybutton .for {
@@ -526,11 +527,11 @@ body {
   }
 
   .buyentrybutton .amount {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
   }
   .man-svg img {
-    transform: translate(10%, 0%);
-    max-width: 170px;
+    transform: translate(-15%, 17%);
+    max-width: 250px;
   }
   .man-svg {
     position: relative;
@@ -571,7 +572,7 @@ body {
     transform: translate(0%, 15%) rotate(46deg);
     width: 100%;
     z-index: 200;
-    font-size: 1.8rem;
+    font-size: 1.3rem;
   }
   .weels-svg {
     position: absolute;

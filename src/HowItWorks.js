@@ -15,7 +15,7 @@ const HowItWorksModal = ({ isOpen, onClose }) => {
       <h2>How It Works</h2>
       <div className="how-it-works-content">
         <h3>
-          Welcome to <strong>Weel of Forchune</strong>
+          Welcome to <strong>DUGG Jackpot</strong>
         </h3>
         <p>A dApp developed for the purpose of degens.</p>
 
@@ -37,20 +37,6 @@ const HowItWorksModal = ({ isOpen, onClose }) => {
           When the timer reaches zero, the wheel spins to select the lucky
           winner. The winner receives the entire pot!
         </p>
-
-        <h4>Benefits</h4>
-        <ul>
-          <li>Minimal transaction fees.</li>
-          <li>
-            75% of daily revenue is burned into our coin, increasing its value
-            each day.
-          </li>
-          <li>
-            Opportunity for partner coins to burn their supply by sponsoring
-            wheel pots.
-          </li>
-          <li>Referral System that let's users claim some SOL per user.</li>
-        </ul>
         <button onClick={onClose} className="close-button">
           Close
         </button>

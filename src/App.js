@@ -5,19 +5,16 @@ import {
 } from "@solana/wallet-adapter-react";
 import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
 import AffiliatesModal from "./AffiliatesModal";
-import ThemeSongPlayer from "./ThemeSongPlayer";
 import { PhantomWalletAdapter } from "@solana/wallet-adapter-phantom";
 import { SolflareWalletAdapter } from "@solana/wallet-adapter-solflare";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HowItWorks from "./HowItWorks"; // Make sure to create this component
 import Header from "./Headers";
 import WheelComponent from "./Wheel";
-import man from "./svg/weel/character.svg";
+import man from "./svg/weel/dugg3.png";
 import icon1 from "./svg/weel/tg.svg";
 import icon2 from "./svg/weel/x.svg";
-import icon3 from "./svg/weel/Dex.svg";
 import icon4 from "./svg/weel/pumpfun.svg";
-import weels from "./svg/weel/weelsS1.svg";
 import timerBackground from "./svg/weel/timer.svg";
 import "./App.css";
 import "@solana/wallet-adapter-react-ui/styles.css";
@@ -48,7 +45,6 @@ export default function App() {
                   openModal={openModal}
                   onReferralsClick={openAffiliates}
                 />
-                <ThemeSongPlayer />
                 <Routes>
                   <Route
                     path="/"
@@ -63,7 +59,7 @@ export default function App() {
                             {/* Pass setStarted as a prop */}
                           </div>
                           <div className="icon-stage">
-                            <a href="https://t.me/weelofforchune" id="telegram">
+                            <a href="https://t.me/DUGG_SOLANA" id="telegram">
                               <img
                                 src={icon1}
                                 alt="Icon 1"
@@ -71,7 +67,7 @@ export default function App() {
                                 style={{ width: "130px", height: "130px" }}
                               />
                             </a>
-                            <a href="https://x.com/weelofforchune" id="twitter">
+                            <a href="https://x.com/duggsolcto" id="twitter">
                               <img
                                 src={icon2}
                                 alt="Icon 2"
@@ -80,22 +76,11 @@ export default function App() {
                               />
                             </a>
                             <a
-                              href="https://pump.fun/FpcbvqmEPA68ozUyd9jR1XY3RHSsb9nbUJgtxEVYpump"
-                              id="pumpfun"
-                            >
-                              <img
-                                src={icon4}
-                                alt="Icon 2"
-                                className="stage-icon"
-                                style={{ width: "130px", height: "130px" }}
-                              />
-                            </a>
-                            <a
-                              href="https://dexscreener.com/solana/772w6gvhskcfy43d4jy2zn7avoasktfskhgjuesyrqhl"
+                              href="https://dexscreener.com/solana/CEA31ZVBVs5efNPhdvRAbHecJ4My21HLhUCk2kmjvgUZ"
                               id="dexscreener"
                             >
                               <img
-                                src={icon3}
+                                src={icon4}
                                 alt="Icon 2"
                                 className="stage-icon"
                                 style={{ width: "130px", height: "130px" }}
@@ -120,10 +105,7 @@ export default function App() {
                             </div>
                           </div>
                           <div className="man-svg">
-                            <img src={man} alt="Weel of Forchune Man" />
-                          </div>
-                          <div className="weels-svg">
-                            <img src={weels} alt="Weel of Forchune Weels" />
+                            <img src={man} alt="Dugg the MAN" />
                           </div>
                         </div>
                       </div>

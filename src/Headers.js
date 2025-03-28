@@ -47,7 +47,7 @@ const Header = ({ openModal, onReferralsClick }) => {
     <header className="header">
       <div className="header-wrapper">
         <h1 className="site-name">
-          <Link to="/">Weel of Forchune</Link>
+          <Link to="/">Dugg Jackpot</Link>
         </h1>
         <div className="right-sectionhead">
           <button onClick={openModal}>How It Works</button>
