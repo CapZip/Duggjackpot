@@ -53,16 +53,13 @@ const WheelComponent = ({ setStarted, setSpinning }) => {
         (docSnapshot) => {
           if (docSnapshot.exists()) {
             const roundData = docSnapshot.data();
-            console.log("Round data updated:", roundData); // Debugging log
 
             // Check if winnerIndex field exists and is not undefined
             if (roundData.winnerIndex !== undefined) {
-              console.log("Winner index detected:", roundData.winnerIndex); // Debugging log
               setPrizeNumber(roundData.winnerIndex);
               setMustSpin(true);
               setSpinning(true);
               setTimeout(async () => {
-                console.log("Fetching new round...");
                 const newRound = await fetchInfo();
                 setCurrentRound(newRound);
                 setStarted(null);
@@ -81,8 +78,6 @@ const WheelComponent = ({ setStarted, setSpinning }) => {
               const now = Timestamp.now().toMillis();
               const started = roundData.started.toMillis();
               const elapsed = now - started;
-              console.log(elapsed);
-              console.log(isBuyEntryDisabled);
               if (elapsed >= 55000) {
                 setIsBuyEntryDisabled(true);
               } else {
@@ -113,7 +108,6 @@ const WheelComponent = ({ setStarted, setSpinning }) => {
           for (const doc of querySnapshot.docs) {
             participantsData.push(doc.data());
           }
-          console.log("Participants data updated:", participantsData); // Debugging log
           const enrichedParticipants = await fetchParticipants(currentRound.id);
           updateParticipants(enrichedParticipants);
           setRawParts(participantsData);
@@ -160,8 +154,6 @@ const WheelComponent = ({ setStarted, setSpinning }) => {
   const handleStopSpinning = () => {
     setMustSpin(false);
     setSpinning(false);
-    console.log("participants: ", participants);
-    console.log("rawParts: ", rawParts);
 
     // Determine the result and amount
     const winningParticipant = participants[prizeNumber];
@@ -173,7 +165,6 @@ const WheelComponent = ({ setStarted, setSpinning }) => {
         const userEntries = rawParts.filter(
           (participant) => participant.walletAddress === publicKey.toString(),
         ).length;
-        console.log("user entries: ", userEntries);
         if (userEntries > 0) {
           setResult("lose");
           setAmount(userEntries * currentRound.entry); // Set the losing amount
