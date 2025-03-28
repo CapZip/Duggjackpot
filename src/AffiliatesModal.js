@@ -136,7 +136,7 @@ const ReferralModal = ({ isOpen, onRequestClose }) => {
     if (error) {
       Toast.fire({
         icon: "error",
-        title: "Please make sure you hold atleast 1 million $WOF",
+        title: "Please make sure you hold atleast 1 million $DUGG",
         timer: 1500,
       });
     }
