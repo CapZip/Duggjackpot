@@ -337,7 +337,7 @@ body {
   position: absolute;
   bottom: 20px; /* Adjust as needed to place the man on the stage */
   left: 50%;
-  transform: translate(-5%, 18%);
+  transform: translate(-5%, 19%);
   z-index: 7;
 }
 .weels-svg {
