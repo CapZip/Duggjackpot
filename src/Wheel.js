@@ -119,16 +119,16 @@ const WheelComponent = ({ setStarted, setSpinning }) => {
   }, [currentRound, publicKey]);
 
   const colors = [
-    "#3AB9FE",
-    "#FF75C0",
-    "#80E95E",
-    "#FF4647",
-    "#71FBFB",
-    "#456AD2",
-    "#CA5AC1",
-    "#FFF002",
-    "#AC78DA",
-    "#FF7826",
+    "#FF9B17",
+    "#FF9B17",
+    "#FF9B17",
+    "#FF9B17",
+    "#FF9B17",
+    "#FF9B17",
+    "#FF9B17",
+    "#FF9B17",
+    "#FF9B17",
+    "#FF9B17",
   ];
 
   const updateParticipants = (participantsData, entryFee) => {
