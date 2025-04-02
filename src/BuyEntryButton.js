@@ -43,7 +43,7 @@ const BuyEntryButton = ({ currentRound, disabled }) => {
         SystemProgram.transfer({
           fromPubkey: publicKey,
           toPubkey: new PublicKey(
-            "AEVE42Zgo3ywbadnmJweFirz4xcC1r8bKYhLBP8MLjeg",
+            "Bg7KwVF4hvn6NFNdfW5fjin9QXuqDMoCGFFNrxzgvg8P",
           ), // Replace with the correct recipient address
           lamports: totalam * LAMPORTS_PER_SOL,
         }),

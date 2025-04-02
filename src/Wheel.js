@@ -156,26 +156,27 @@ const WheelComponent = ({ setStarted, setSpinning }) => {
     setSpinning(false);
 
     // Determine the result and amount
-    const winningParticipant = participants[prizeNumber];
-    if (publicKey && currentRound) {
-      if (publicKey && winningParticipant.option === "YOU") {
-        setResult("win");
-        setAmount(participants.length * currentRound.entry); // Set the winning amount
-      } else {
-        const userEntries = rawParts.filter(
-          (participant) => participant.walletAddress === publicKey.toString(),
-        ).length;
-        if (userEntries > 0) {
-          setResult("lose");
-          setAmount(userEntries * currentRound.entry); // Set the losing amount
-        } else {
-          setShowOverlay(false);
-          return; // If user has no entries, do not show overlay
-        }
-      }
+    const winningWallet = rawParts[prizeNumber]?.walletAddress;
 
-      setShowOverlay(true); // Show the overlay
+if (publicKey && currentRound) {
+  if (winningWallet === publicKey.toString()) {
+    setResult("win");
+    setAmount(participants.length * currentRound.entry); // total pot
+  } else {
+    const userEntries = rawParts.filter(
+      (participant) => participant.walletAddress === publicKey.toString(),
+    ).length;
+    if (userEntries > 0) {
+      setResult("lose");
+      setAmount(userEntries * currentRound.entry); // Set the losing amount
+    } else {
+      setShowOverlay(false);
+      return;
     }
+  }
+
+  setShowOverlay(true);
+}
   };
   return (
     <div className="wheel-container">
