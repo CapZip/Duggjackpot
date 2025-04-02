@@ -154,15 +154,15 @@ useEffect(() => {
 
   const colors = [
     "#FF9B17",
-    "#FF9B17",
-    "#FF9B17",
-    "#FF9B17",
-    "#FF9B17",
-    "#FF9B17",
-    "#FF9B17",
-    "#FF9B17",
-    "#FF9B17",
-    "#FF9B17",
+    "#d159a5",
+    "#7259d1",
+    "#5994d1",
+    "#59ced1",
+    "#59d187",
+    "#65d159",
+    "#f1ea38",
+    "#f1385e",
+    "#948102",
   ];
 
   const updateParticipants = (participantsData, entryFee) => {
