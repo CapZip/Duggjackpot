@@ -217,6 +217,7 @@ useEffect(() => {
       const newRound = await fetchInfo();
       setCurrentRound(newRound);
       setPrizeNumber(null);
+      setTotalAmount(0);
       setStarted(null);
   
       if (newRound) {
