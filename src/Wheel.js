@@ -23,7 +23,7 @@ const WheelComponent = ({ setStarted, setSpinning }) => {
   const [mustSpin, setMustSpin] = useState(false);
   const [prizeNumber, setPrizeNumber] = useState(null);
   const [currentRound, setCurrentRound] = useState(null);
-  const [timeLeft, setTimeLeft] = useState(63);
+  const [timeLeft, setTimeLeft] = useState(61);
   const [isBuyEntryDisabled, setIsBuyEntryDisabled] = useState(false);
   const [showOverlay, setShowOverlay] = useState(false); // State to manage overlay visibility
   const [result, setResult] = useState(null); // State to manage result
@@ -80,7 +80,7 @@ const WheelComponent = ({ setStarted, setSpinning }) => {
               const started = roundData.started.toMillis();
               const now = Date.now();
               const elapsed = now - started;
-              const secondsLeft = Math.max(63 - Math.floor(elapsed / 1000), 0);
+              const secondsLeft = Math.max(61 - Math.floor(elapsed / 1000), 0);
   
               setTimeLeft(secondsLeft);
   
@@ -96,7 +96,7 @@ const WheelComponent = ({ setStarted, setSpinning }) => {
               countdownInterval = setInterval(() => {
                 const now = Date.now();
                 const elapsed = now - started;
-                const remaining = Math.max(63 - Math.floor(elapsed / 1000), 0);
+                const remaining = Math.max(61 - Math.floor(elapsed / 1000), 0);
                 setTimeLeft(remaining);
                 console.log(remaining);
                 if (remaining <= 0) {
