@@ -187,12 +187,13 @@ useEffect(() => {
 
   const handleStopSpinning = async () => {
     setTimeout(() => {
-    setMustSpin(false);
-    setSpinning(false);
-  }, 4000);
+      setMustSpin(false);
+      setSpinning(false);
+    }, 4000);
   
     const winningWallet = rawParts[prizeNumber]?.walletAddress;
   
+    // Result logic only if wallet is connected
     if (publicKey && currentRound) {
       if (winningWallet === publicKey.toString()) {
         setResult("win");
@@ -201,33 +202,32 @@ useEffect(() => {
         const userEntries = rawParts.filter(
           (participant) => participant.walletAddress === publicKey.toString()
         ).length;
+  
         if (userEntries > 0) {
           setResult("lose");
           setAmount(userEntries * currentRound.entry);
-        } else {
-          setShowOverlay(false);
-          return;
         }
       }
   
       setShowOverlay(true);
     }
   
-    // 🕓 Delay before resetting everything
+    // ✅ Always reset round even if wallet isn't connected
     setTimeout(async () => {
       const newRound = await fetchInfo();
       setCurrentRound(newRound);
       setPrizeNumber(null);
       setStarted(null);
+  
       if (newRound) {
         const participantsData = await fetchParticipants(newRound.id);
         updateParticipants(participantsData);
         setRawParts(participantsData);
       }
+  
       setTimeout(() => {
         setShowOverlay(false);
         setHasSpun(false); // allow spin again next time
-        setShowOverlay(false);
       }, 2000);
     }, 5000); // give 5s delay after wheel stops
   };
