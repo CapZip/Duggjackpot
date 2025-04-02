@@ -92,7 +92,7 @@ const ReferralModal = ({ isOpen, onRequestClose }) => {
   };
 
   const handleCopyLink = () => {
-    navigator.clipboard.writeText(`https://wof.lol/?x=${referralId}`);
+    navigator.clipboard.writeText(`https://jackpot.duggonsol.xyz/?x=${referralId}`);
     Toast.fire({
       icon: "success",
       title: "Referral link copied to clipboard!",
@@ -172,7 +172,7 @@ const ReferralModal = ({ isOpen, onRequestClose }) => {
           <div className="referral-link">
             <input
               type="text"
-              value={`https://wof.lol/?x=${referralId}`}
+              value={`https://jackpot.duggonsol.xyz/?x=${referralId}`}
               readOnly
               className="referral-input"
             />
