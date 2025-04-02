@@ -23,6 +23,7 @@ const WheelComponent = ({ setStarted, setSpinning }) => {
   const [mustSpin, setMustSpin] = useState(false);
   const [prizeNumber, setPrizeNumber] = useState(null);
   const [currentRound, setCurrentRound] = useState(null);
+  const [timeLeft, setTimeLeft] = useState(63);
   const [isBuyEntryDisabled, setIsBuyEntryDisabled] = useState(false);
   const [showOverlay, setShowOverlay] = useState(false); // State to manage overlay visibility
   const [result, setResult] = useState(null); // State to manage result
@@ -43,55 +44,90 @@ const WheelComponent = ({ setStarted, setSpinning }) => {
 
     getCurrentRound();
   }, []);
-
+  useEffect(() => {
+    if (!currentRound?.id) return;
+  
+    const roundDocRef = doc(db, "rounds", currentRound.id);
+    const unsubscribe = onSnapshot(roundDocRef, (docSnapshot) => {
+      if (!docSnapshot.exists()) return;
+  
+      const roundData = docSnapshot.data();
+      if (
+        roundData.winnerIndex !== undefined &&
+        roundData.winnerIndex !== null
+      ) {
+        setPrizeNumber(roundData.winnerIndex); // ONLY updates state
+      }
+    });
+  
+    return () => unsubscribe();
+  }, [currentRound?.id]);
   // Set up listener for winnerIndex in current round
   useEffect(() => {
     let unsubscribeRound;
+    let countdownInterval;
+  
     if (currentRound && currentRound.id) {
       unsubscribeRound = onSnapshot(
         doc(db, "rounds", currentRound.id),
         (docSnapshot) => {
           if (docSnapshot.exists()) {
             const roundData = docSnapshot.data();
-
-            // Check if winnerIndex field exists and is not undefined
-            if (roundData.winnerIndex !== undefined) {
-              setPrizeNumber(roundData.winnerIndex);
-              setMustSpin(true);
-              setSpinning(true);
-              setTimeout(async () => {
-                const newRound = await fetchInfo();
-                setCurrentRound(newRound);
-                setStarted(null);
-                if (newRound) {
-                  const participantsData = await fetchParticipants(newRound.id);
-                  updateParticipants(participantsData);
-                  setRawParts(participantsData);
-                  setTimeout(async () => {
-                    setShowOverlay(false);
-                  }, 2000);
-                }
-              }, 14000);
-            }
+  
             if (roundData.started) {
-              setStarted(roundData.started); // Update started state
-              const now = Timestamp.now().toMillis();
+              setStarted(roundData.started);
+  
               const started = roundData.started.toMillis();
+              const now = Date.now();
               const elapsed = now - started;
-              if (elapsed >= 55000) {
-                setIsBuyEntryDisabled(true);
+              const secondsLeft = Math.max(63 - Math.floor(elapsed / 1000), 0);
+  
+              setTimeLeft(secondsLeft);
+  
+              if (secondsLeft >= 50) {
+                setIsBuyEntryDisabled(true); // Optional: stricter lockout
               } else {
                 setIsBuyEntryDisabled(false);
               }
+  
+              // Clear any previous interval
+              if (countdownInterval) clearInterval(countdownInterval);
+  
+              countdownInterval = setInterval(() => {
+                const now = Date.now();
+                const elapsed = now - started;
+                const remaining = Math.max(63 - Math.floor(elapsed / 1000), 0);
+                setTimeLeft(remaining);
+                console.log(remaining);
+                if (remaining <= 0) {
+                  clearInterval(countdownInterval);
+                }
+              }, 1000);
             }
           }
         },
       );
-
-      return () => unsubscribeRound();
     }
+  
+    return () => {
+      if (unsubscribeRound) unsubscribeRound();
+      if (countdownInterval) clearInterval(countdownInterval);
+    };
   }, [currentRound, setStarted]);
+  const [hasSpun, setHasSpun] = useState(false);
 
+useEffect(() => {
+  if (
+    prizeNumber !== null &&
+    !hasSpun && timeLeft === 0)
+      {
+        requestAnimationFrame(() => {
+          setMustSpin(true);
+          setSpinning(true);
+          setHasSpun(true);
+        });
+      }
+}, [prizeNumber, hasSpun, timeLeft]);
   // Set up listener for participants
   useEffect(() => {
     let unsubscribeParticipants;
@@ -151,32 +187,51 @@ const WheelComponent = ({ setStarted, setSpinning }) => {
     }
   };
 
-  const handleStopSpinning = () => {
+  const handleStopSpinning = async () => {
+    setTimeout(() => {
     setMustSpin(false);
     setSpinning(false);
-
-    // Determine the result and amount
+  }, 3000);
+  
     const winningWallet = rawParts[prizeNumber]?.walletAddress;
-
-if (publicKey && currentRound) {
-  if (winningWallet === publicKey.toString()) {
-    setResult("win");
-    setAmount(participants.length * currentRound.entry); // total pot
-  } else {
-    const userEntries = rawParts.filter(
-      (participant) => participant.walletAddress === publicKey.toString(),
-    ).length;
-    if (userEntries > 0) {
-      setResult("lose");
-      setAmount(userEntries * currentRound.entry); // Set the losing amount
-    } else {
-      setShowOverlay(false);
-      return;
+  
+    if (publicKey && currentRound) {
+      if (winningWallet === publicKey.toString()) {
+        setResult("win");
+        setAmount(participants.length * currentRound.entry);
+      } else {
+        const userEntries = rawParts.filter(
+          (participant) => participant.walletAddress === publicKey.toString()
+        ).length;
+        if (userEntries > 0) {
+          setResult("lose");
+          setAmount(userEntries * currentRound.entry);
+        } else {
+          setShowOverlay(false);
+          return;
+        }
+      }
+  
+      setShowOverlay(true);
     }
-  }
-
-  setShowOverlay(true);
-}
+  
+    // 🕓 Delay before resetting everything
+    setTimeout(async () => {
+      const newRound = await fetchInfo();
+      setCurrentRound(newRound);
+      setPrizeNumber(null);
+      setStarted(null);
+      if (newRound) {
+        const participantsData = await fetchParticipants(newRound.id);
+        updateParticipants(participantsData);
+        setRawParts(participantsData);
+      }
+      setTimeout(() => {
+        setShowOverlay(false);
+        setHasSpun(false); // allow spin again next time
+        setShowOverlay(false);
+      }, 2000);
+    }, 5000); // give 5s delay after wheel stops
   };
   return (
     <div className="wheel-container">
