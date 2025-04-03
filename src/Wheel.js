@@ -58,6 +58,7 @@ const WheelComponent = ({ setStarted, setSpinning }) => {
         roundData.winnerIndex !== null &&
         roundData.winnerIndex !== prizeNumber // ✅ Only update if actually different
       ) {
+        console.log("⏲️ Winner index updated:", roundData.winnerIndex);
         setPrizeNumber(roundData.winnerIndex);
       }
     });
@@ -123,6 +124,7 @@ useEffect(() => {
     prizeNumber !== null &&
     !hasSpun && timeLeft === 0)
       {
+        console.log("Spinning...");
           setMustSpin(true);
           setSpinning(true);
           setHasSpun(true);
@@ -171,7 +173,18 @@ useEffect(() => {
     "#948102",
   ];
 
-  const updateParticipants = (participantsData, entryFee) => {
+  const updateParticipants = (participantsData) => {
+    const updatedWallets = participantsData.map((p) => p.walletAddress);
+    const currentWallets = participants.map((p) =>
+      p.option === "YOU" ? publicKey?.toString() : p.option
+    );
+  
+    const same =
+      updatedWallets.length === currentWallets.length &&
+      updatedWallets.every((addr, i) => addr === currentWallets[i]);
+  
+    if (same) return; // ✅ Skip update if same wallets
+  
     const updatedParticipants = participantsData.map((participant, index) => ({
       option:
         publicKey && participant.walletAddress === publicKey.toString()
@@ -179,15 +192,14 @@ useEffect(() => {
           : participant.username,
       style: { backgroundColor: colors[index % colors.length] },
     }));
-
-    // Preserve the initial empty slots for visual effect
+  
     for (let i = updatedParticipants.length; i < initialData.length; i++) {
       updatedParticipants.push(initialData[i]);
     }
-
+  
     setParticipants(updatedParticipants);
     if (currentRound) {
-      setTotalAmount(participantsData.length * currentRound.entry); // Calculate and set the total amount
+      setTotalAmount(participantsData.length * currentRound.entry);
     }
   };
 
