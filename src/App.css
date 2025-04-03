@@ -535,16 +535,16 @@ body {
   }
   .man-svg {
     position: relative;
-    transform: translate(10%, 5%);
+    transform: translate(14%, 0%);
   }
   .icon-stage {
     position: relative;
     left: 0%;
     bottom: -145px;
-    transform: translate(-10%, 35%);
+    transform: translate(-10%, 25%);
   }
   .stage-icon {
-    width: 65px !important;
+    width: 80px !important;
     height: auto !important;
   }
   .wallet-adapter-button-trigger {
