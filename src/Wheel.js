@@ -52,16 +52,18 @@ const WheelComponent = ({ setStarted, setSpinning }) => {
       if (!docSnapshot.exists()) return;
   
       const roundData = docSnapshot.data();
+  
       if (
         roundData.winnerIndex !== undefined &&
-        roundData.winnerIndex !== null
+        roundData.winnerIndex !== null &&
+        roundData.winnerIndex !== prizeNumber // ✅ Only update if actually different
       ) {
-        setPrizeNumber(roundData.winnerIndex); // ONLY updates state
+        setPrizeNumber(roundData.winnerIndex);
       }
     });
   
     return () => unsubscribe();
-  }, [currentRound?.id]);
+  }, [currentRound?.id, prizeNumber]); 
   // Set up listener for winnerIndex in current round
   useEffect(() => {
     let unsubscribeRound;
