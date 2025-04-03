@@ -273,7 +273,12 @@ useEffect(() => {
             fontFamily="Pocket Monk"
           />
           <img src={wheelOverlay} alt="Wheel Overlay" className="overlay" />
-          <div className="total-amount">{totalAmount.toFixed(1)} SOL</div>
+          <div className="total-amount">
+  {typeof totalAmount === "number" && !isNaN(totalAmount)
+    ? totalAmount.toFixed(1)
+    : "0.0"}{" "}
+  SOL
+</div>
         </div>
       </div>
       <BuyEntryButton

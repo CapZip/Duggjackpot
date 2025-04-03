@@ -38,8 +38,8 @@ const ResultOverlay = ({ show, result, amount }) => {
       <img src={imageSrc} alt={result} className="overlay-image" />
       <div className="overlay-text">
         <span>
-          {result === "win" ? "+" : "-"}
-          {amount.toFixed(1)}
+        {result === "win" ? "+" : "-"}
+  {typeof amount === "number" && !isNaN(amount) ? amount.toFixed(1) : "0.0"}
         </span>
         <br />
         <span>SOL</span>
