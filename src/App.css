@@ -489,15 +489,15 @@ body {
   .timer {
     transform: translate(-50%, -160%) !important;
     width: 100%;
-    bottom: 65%;
+    bottom: 20%;
     position: relative;
   }
   .timer img {
-    width: 175px;
+    width: 225px;
   }
   .timer-text {
-    font-size: 1.05rem;
-    max-width: 175px;
+    font-size: 1.15rem;
+    max-width: 200px;
     transform: translate(-50%, -52%);
   }
   .pending-text {
