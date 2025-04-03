@@ -23,7 +23,7 @@ const WheelComponent = ({ setStarted, setSpinning }) => {
   const [mustSpin, setMustSpin] = useState(false);
   const [prizeNumber, setPrizeNumber] = useState(null);
   const [currentRound, setCurrentRound] = useState(null);
-  const [timeLeft, setTimeLeft] = useState(64);
+  const [timeLeft, setTimeLeft] = useState(61);
   const [isBuyEntryDisabled, setIsBuyEntryDisabled] = useState(false);
   const [showOverlay, setShowOverlay] = useState(false); // State to manage overlay visibility
   const [result, setResult] = useState(null); // State to manage result
@@ -69,6 +69,7 @@ const WheelComponent = ({ setStarted, setSpinning }) => {
   useEffect(() => {
     let unsubscribeRound;
     let countdownInterval;
+    let lastStartedTimestamp = null;
   
     if (currentRound && currentRound.id) {
       unsubscribeRound = onSnapshot(
@@ -77,29 +78,30 @@ const WheelComponent = ({ setStarted, setSpinning }) => {
           if (docSnapshot.exists()) {
             const roundData = docSnapshot.data();
   
-            if (roundData.started) {
+            // ✅ Only run timer logic if `started` is new
+            if (
+              roundData.started &&
+              (!lastStartedTimestamp ||
+                roundData.started.toMillis() !== lastStartedTimestamp)
+            ) {
+              lastStartedTimestamp = roundData.started.toMillis();
               setStarted(roundData.started);
   
-              const started = roundData.started.toMillis();
+              const started = lastStartedTimestamp;
               const now = Date.now();
               const elapsed = now - started;
-              const secondsLeft = Math.max(64 - Math.floor(elapsed / 1000), 0);
+              const secondsLeft = Math.max(61 - Math.floor(elapsed / 1000), 0);
   
               setTimeLeft(secondsLeft);
   
-              if (secondsLeft >= 50) {
-                setIsBuyEntryDisabled(true); // Optional: stricter lockout
-              } else {
-                setIsBuyEntryDisabled(false);
-              }
+              setIsBuyEntryDisabled(secondsLeft >= 50);
   
-              // Clear any previous interval
               if (countdownInterval) clearInterval(countdownInterval);
   
               countdownInterval = setInterval(() => {
                 const now = Date.now();
                 const elapsed = now - started;
-                const remaining = Math.max(64 - Math.floor(elapsed / 1000), 0);
+                const remaining = Math.max(61 - Math.floor(elapsed / 1000), 0);
                 setTimeLeft(remaining);
                 console.log(remaining);
                 if (remaining <= 0) {
@@ -108,7 +110,7 @@ const WheelComponent = ({ setStarted, setSpinning }) => {
               }, 1000);
             }
           }
-        },
+        }
       );
     }
   
@@ -196,7 +198,7 @@ useEffect(() => {
     for (let i = updatedParticipants.length; i < initialData.length; i++) {
       updatedParticipants.push(initialData[i]);
     }
-  
+    console.log("Participants Updated");
     setParticipants(updatedParticipants);
     if (currentRound) {
       setTotalAmount(participantsData.length * currentRound.entry);
@@ -246,6 +248,7 @@ useEffect(() => {
   
       setTimeout(() => {
         setShowOverlay(false);
+        setTimeLeft(61);
         setHasSpun(false); // allow spin again next time
       }, 2000);
     }, 5000); // give 5s delay after wheel stops
