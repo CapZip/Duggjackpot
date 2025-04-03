@@ -38,7 +38,11 @@ export const updateUsername = async (walletAddress, username) => {
 export const fetchParticipants = async (roundId) => {
   try {
     const participantsRef = collection(db, "participants");
-    const q = query(participantsRef, where("matchId", "==", roundId));
+    const q = query(
+      participantsRef,
+      where("matchId", "==", roundId),
+      orderBy("timestamp") // 👈 this ensures frontend matches backend order
+    );
     const querySnapshot = await getDocs(q);
 
     const participants = [];
