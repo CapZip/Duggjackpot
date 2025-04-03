@@ -142,9 +142,13 @@ useEffect(() => {
           for (const doc of querySnapshot.docs) {
             participantsData.push(doc.data());
           }
+      
+          // ✅ Sort by timestamp to match backend logic
+          participantsData.sort((a, b) => a.timestamp?.seconds - b.timestamp?.seconds);
+      
           const enrichedParticipants = await fetchParticipants(currentRound.id);
           updateParticipants(enrichedParticipants);
-          setRawParts(participantsData);
+          setRawParts(participantsData); // sorted!
         },
       );
 
