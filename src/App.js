@@ -76,7 +76,7 @@ export default function App() {
                               />
                             </a>
                             <a
-                              href="https://dexscreener.com/solana/CEA31ZVBVs5efNPhdvRAbHecJ4My21HLhUCk2kmjvgUZ"
+                              href="https://dexscreener.com/solana/gsjwgrcm2bddm55pnzu1rvva8mfebhbyrfu33zhqfhgg"
                               id="dexscreener"
                             >
                               <img

@@ -215,21 +215,22 @@ useEffect(() => {
   
     // Result logic only if wallet is connected
     if (publicKey && currentRound) {
-      if (winningWallet === publicKey.toString()) {
-        setResult("win");
-        setAmount(participants.length * currentRound.entry);
-      } else {
-        const userEntries = rawParts.filter(
-          (participant) => participant.walletAddress === publicKey.toString()
-        ).length;
-  
-        if (userEntries > 0) {
+      const walletString = publicKey.toString();
+      const userEntries = rawParts.filter(
+        (participant) => participant.walletAddress === walletString
+      );
+    
+      if (userEntries.length > 0) {
+        if (rawParts[prizeNumber]?.walletAddress === walletString) {
+          setResult("win");
+          setAmount(participants.length * currentRound.entry);
+        } else {
           setResult("lose");
-          setAmount(userEntries * currentRound.entry);
+          setAmount(userEntries.length * currentRound.entry);
         }
+    
+        setShowOverlay(true); // ✅ only show if user actually participated
       }
-  
-      setShowOverlay(true);
     }
   
     // ✅ Always reset round even if wallet isn't connected
